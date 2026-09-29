@@ -2,7 +2,8 @@
 SELECT
     neighbourhood_group,
     `Host Category`,
-    SUM(`No of Host`) AS `No of Host`
+    SUM(`No of Host`) AS `No of Host`,
+    SUM(`No of Listings`) AS `No of Listings`
 FROM (
 
     -- Combine the four source tables
@@ -10,6 +11,7 @@ FROM (
         neighbourhood_group,
         calculated_host_listings_count,
         COUNT(*) / calculated_host_listings_count AS `No of Host`,
+        COUNT(*) AS `No of Listings`,
 
         CASE
             WHEN calculated_host_listings_count = 1
